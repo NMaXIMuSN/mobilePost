@@ -14,13 +14,13 @@ export const CreatePost = ({ navigation, route }) => {
   const [state, dispatch] = useReducer(reducer, { name: '', title: '', text: '', image: '' });
   const [isLoading, setIsLoading] = useState(false)
 
-  const name = useRef()
+  const nameRef = useRef()
 
   const { fetchAllPosts } = usePost()
 
   useEffect(() => {
-    name.current.focus()
-  })
+    nameRef.current.focus()
+  }, [])
 
   const handelSave = async () => {
     setIsLoading(true)
@@ -50,7 +50,7 @@ export const CreatePost = ({ navigation, route }) => {
     <View style={styles.container}>
       <View>
         <Text>Name</Text>
-        <TextInput ref={name} style={styles.input} value={state.name} placeholder="name" onChangeText={(name) => dispatch({
+        <TextInput ref={nameRef} style={styles.input} value={state.name} placeholder="name" onChangeText={(name) => dispatch({
           ...state,
           name,
         })}/>

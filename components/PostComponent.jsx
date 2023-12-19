@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 export const PostComponent = ({ title, createdAt, imageUri, id, onPress }) => {
   
   const create = useMemo(() => {
-    const date = dayjs(create).format('DD/MM/YYYY')
+    const date = dayjs(createdAt).format('DD/MM/YYYY')
     return date
   }, [createdAt])
 
@@ -13,7 +13,6 @@ export const PostComponent = ({ title, createdAt, imageUri, id, onPress }) => {
     <TouchableHighlight 
       activeOpacity={0.6}
       underlayColor="#DDDDDD"
-      
       onPress={() => onPress(id)}
     >
       <View style={styles.container}>
