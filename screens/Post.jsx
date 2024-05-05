@@ -5,37 +5,23 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 export const Post = ({ navigation, route }) => {
   const { curPost, fetchPostById, deletePostById, isLoading } = usePost()
-
   useEffect(() => {
     fetchPostById(route.params.id)
   }, [])
-
   useEffect(() => {
     navigation.setOptions({
       title: `Post by ${curPost?.name || ''}`,
       headerRight: () => (
         <View style={{flexDirection: "row", gap: 10}}>
-          <Ionicons
-            name='pencil'
-            onPress={() => navigation.navigate('CreatePost')}
-            size={20}
-          />
-          <Ionicons
-            name='trash'
-            onPress={() => deletePostById(route?.params?.id, () => navigation.navigate('Home'))}
-            size={20}
-          />
+          <Ionicons name='pencil' onPress={() => navigation.navigate('CreatePost')} size={20} />
+          <Ionicons name='trash' onPress={() => deletePostById(route?.params?.id, () => navigation.navigate('Home'))} size={20} />
         </View>
       ),
     });
   }, [navigation, curPost]);
-
-
-
   if (!route?.params?.id) {
     navigation.navigate('Home')
   }
-
   if (isLoading || !curPost) {
     return (
       <View>
@@ -43,16 +29,11 @@ export const Post = ({ navigation, route }) => {
       </View>
     )
   }
-
   return (
     <ScrollView style={styles.container}>
       {curPost.image && <Image resizeMode='cover' style={styles.image} source={{ uri: curPost.image || ''}}/>}
-      <Text style={styles.title}>
-        { curPost.title }
-      </Text>
-      <Text style={styles.content}>
-        { curPost.text }
-      </Text>
+      <Text style={styles.title}> { curPost.title } </Text>
+      <Text style={styles.content}> { curPost.text } </Text>
     </ScrollView>
   )
 }

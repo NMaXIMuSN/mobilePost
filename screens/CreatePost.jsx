@@ -13,7 +13,6 @@ const reducer = (state, action) => {
 export const CreatePost = ({ navigation, route }) => {
   const [state, dispatch] = useReducer(reducer, { name: '', title: '', text: '', image: '' });
   const [isLoading, setIsLoading] = useState(false)
-
   const nameRef = useRef()
 
   const { fetchAllPosts } = usePost()
